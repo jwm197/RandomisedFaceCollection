@@ -57,31 +57,15 @@ function draw () {
         let tilt_value = random(-45, 45);
         let mouth_value = random(1, 3);
         let is_cyclops = random(0, 100);
-        if(is_cyclops < 10) {
-          eye_value = 1;
-          tilt_value = random(-5, 5);
-          mouth_value = random(5, 10);
-        }
+        
         push();
         translate(x, y);
         scale(w/25, h/25);
-        orangeAlienFace(tilt_value, eye_value, mouth_value);
+        new Face().drawFace();
+        //orangeAlienFace(tilt_value, eye_value, mouth_value);
         pop();
       }
-      else if (i > 0) {
-        // all other faces
-        push();
-        translate(x, y);
-        scale(w/25, h/25);
-        if((i+j)%2 == 0) {
-          simplePurpleFace();
-        }
-        else {
-          thinness_value = random(0, 100);
-          blockyFace(thinness_value);
-        }
-        pop();
-      }
+      
     }
   }
 }
