@@ -1,1 +1,1 @@
-Currently working on adding randomness to the ear. The flashing is a result of the fact I am creating a new object each frame. It is an easy fix. 
+I have parameterised the side burn and fixed the glitch where the editor was drawing the face everyframe. 

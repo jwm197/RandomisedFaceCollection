@@ -6,7 +6,9 @@
  *
  * These functions are used by your final arrangement of faces as well as the face editor.
  */
-
+const minSideBurnHeight=.1;
+const maxSideBurnHeight=3;
+const sideBurns = ["none", "square", "triangle"];
 class Face{
   headHeight=8;
   headWidth=8; 
@@ -16,10 +18,14 @@ class Face{
   earWidth=3;
   skinColour=170;
   hairColour=0;
-  sideBurns = ["none", "square", "triangle"];
+  
   sideBurnHeight=0;
+  
   constructor(){
-    this.sideBurn=this.sideBurns[Math.floor(Math.random() * this.sideBurns.length)];
+    this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
+    if(this.sideBurn!="none"){
+      this.sideBurnHeight=Math.random(minSideBurnHeight,maxSideBurnHeight);
+    }
     // this.headHeight=8;
     // this.headWidth=8; 
     
@@ -34,9 +40,9 @@ class Face{
     rectMode(CENTER);
     fill(this.skinColour);
     //noStroke();
-    rect(0,0,this.headWidth,this.headHeight);
-   
-    triangle(-this.headWidth/2, -this.headHeight/2, this.headWidth/2, -this.headHeight/2, this.headWidth/2,-this.foreHeadHeight);
+    quad(-this.headWidth/2, -this.headHeight/2, this.headWidth/2, -this.foreHeadHeight,
+    this.headWidth/2, this.headHeight/2, -this.headWidth/2, this.headHeight/2);
+    
   }
   drawFace(){
     this.drawEar();
@@ -49,15 +55,23 @@ class Face{
     fill(this.hairColour);
     triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, this.headWidth/2, -this.headHeight/2, this.headWidth/2,-this.hairHeight);
     if(this.sideBurn=="square"){
-      rect(-this.headWidth/2-this.earWidth,0,this.earWidth,this.sideBurnHeight);
+      quad(-this.headWidth/2-this.earWidth, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2+this.sideBurnHeight, -this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight)
+     
     }
     else if(this.sideBurn=="triangle"){
-
+      triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2, -this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight)
     }
   }
   drawEar(){
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
+
+  }
+  drawEye(){
+
+  }
+  drawNose(){
+
   }
 
  
