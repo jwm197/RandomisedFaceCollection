@@ -8,36 +8,56 @@
  */
 
 class Face{
-  headHeight=0;
-  headWidth=0;
+  headHeight=8;
+  headWidth=8; 
   
-  foreHeadHeight=0;
-  hairHeight=0;
+  foreHeadHeight=5;
+  hairHeight=10;
+  earWidth=3;
+  skinColour=170;
+  hairColour=0;
+  sideBurns = ["none", "square", "triangle"];
+  sideBurnHeight=0;
   constructor(){
-    this.headHeight=8;
-    this.headWidth=8; 
+    this.sideBurn=this.sideBurns[Math.floor(Math.random() * this.sideBurns.length)];
+    // this.headHeight=8;
+    // this.headWidth=8; 
     
-    this.foreHeadHeight=5;
-    this.hairHeight=10;
+    // this.foreHeadHeight=5;
+    // this.hairHeight=10;
+    // this.earWidth=3;
+   
   }
   
   
   drawSkin(){
     rectMode(CENTER);
-    fill(170);
+    fill(this.skinColour);
     //noStroke();
     rect(0,0,this.headWidth,this.headHeight);
    
-    triangle(-this.headWidth/2, -this.headHeight/2, this.headWidth/2, -this.headHeight/2, this.headWidth/2,-this.foreHeadHeight)
+    triangle(-this.headWidth/2, -this.headHeight/2, this.headWidth/2, -this.headHeight/2, this.headWidth/2,-this.foreHeadHeight);
   }
   drawFace(){
+    this.drawEar();
     this.drawHair();
     this.drawSkin();
     
+    
   }
   drawHair(){
-    fill(255);
-    triangle(-this.headWidth/2, -this.headHeight/2, this.headWidth/2, -this.headHeight/2, this.headWidth/2,-this.hairHeight)
+    fill(this.hairColour);
+    triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, this.headWidth/2, -this.headHeight/2, this.headWidth/2,-this.hairHeight);
+    if(this.sideBurn=="square"){
+      rect(-this.headWidth/2-this.earWidth,0,this.earWidth,this.sideBurnHeight);
+    }
+    else if(this.sideBurn=="triangle"){
+
+    }
+  }
+  drawEar(){
+    fill(this.skinColour);
+    rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
   }
 
  

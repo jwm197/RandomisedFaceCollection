@@ -1,1 +1,1 @@
-Started building a face using OOP. I am basically just working on the back end to make it really effecient before adding randomisation to the features 
+Currently working on adding randomness to the ear. The flashing is a result of the fact I am creating a new object each frame. It is an easy fix. 
