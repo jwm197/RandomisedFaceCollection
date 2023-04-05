@@ -8,6 +8,13 @@
  */
 const minSideBurnHeight=.1;
 const maxSideBurnHeight=3;
+const minNoseHeight=0.5;
+const maxNoseHeight=4;
+const minNoseWidth=0.5;
+const maxNoseWidth=6;
+const minNoseY=-1.5;
+const maxNoseY=1.5; 
+const noseDirections = ["left", "right", "both"];
 const sideBurns = ["none", "square", "triangle"];
 class Face{
   headHeight=8;
@@ -20,12 +27,17 @@ class Face{
   hairColour=0;
   
   sideBurnHeight=0;
+  noseX=0;
   
   constructor(){
     this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
     if(this.sideBurn!="none"){
       this.sideBurnHeight=Math.random(minSideBurnHeight,maxSideBurnHeight);
     }
+    this.noseWidth=Math.random(minNoseWidth,maxNoseWidth);
+    this.noseHeight=Math.random(minNoseHeight,maxNoseHeight);
+    this.noseDirection=noseDirections[Math.floor(Math.random() * noseDirections.length)];
+    this.noseY=Math.random(minNoseY,maxNoseY);
     // this.headHeight=8;
     // this.headWidth=8; 
     
@@ -48,6 +60,7 @@ class Face{
     this.drawEar();
     this.drawHair();
     this.drawSkin();
+    this.drawNose();
     
     
   }
@@ -71,7 +84,15 @@ class Face{
 
   }
   drawNose(){
-
+    if(this.noseDirection=="left"){
+      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2);
+    }
+    else if(this.noseDirection=="right"){
+      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2);
+    }
+    else{
+      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2);
+    }
   }
 
  

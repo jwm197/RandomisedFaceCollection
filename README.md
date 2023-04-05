@@ -1,1 +1,1 @@
-I have parameterised the side burn and fixed the glitch where the editor was drawing the face everyframe. 
+I have parameterised the nose so it can be drawn in different styles widths, heights and y postions 

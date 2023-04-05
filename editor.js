@@ -88,6 +88,10 @@ function draw () {
    // draw face using values mapped from 3 sliders
    face.sideBurn=sideBurns[Math.floor(map(s1, 0, 100, 0,sideBurns.length))];
    face.sideBurnHeight=map(s2, 0, 100, minSideBurnHeight, maxSideBurnHeight);
+   face.noseWidth=map(s3, 0, 100, minNoseWidth, maxNoseWidth);
+   face.noseHeight=map(s4, 0, 100, minNoseHeight, maxNoseHeight);
+   face.noseDirection=noseDirections[Math.floor(map(s5, 0, 100, 0,noseDirections.length))];
+   face.noseY=map(s6, 0, 100, minNoseY, maxNoseY);
   //  let mouth_value = map(s2, 0, 100, 0.5, 10);
   //  let eye_value = int(map(s3, 0, 100, 1, 3));
    //orangeAlienFace(tilt_value, eye_value, mouth_value);
