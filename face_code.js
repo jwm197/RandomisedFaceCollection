@@ -58,6 +58,7 @@ class Face{
     this.eyeHeight=random(minEyeHeight,maxEyeHeight);
     this.innerEyeWidth=random(minInnerEyeWidth,maxInnerEyeWidth);
     this.innerEyeHeight=random(minInnerEyeHeight,maxInnerEyeHeight);
+
     // this.headHeight=8;
     // this.headWidth=8; 
     
@@ -81,8 +82,9 @@ class Face{
     this.drawEar();
     this.drawHair();
     this.drawSkin();
-    this.drawEye();
+    
     this.drawNose();
+    this.drawEyes();
     
     
   }
@@ -102,12 +104,17 @@ class Face{
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
 
   }
-  drawEye(){
+  drawEyes(){
+    //left eye
     fill(this.eyeBallCol);
     ellipse(-this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
-    ellipse(this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
     fill(this.eyeCentreCol);
     ellipse(-this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+    
+    //right eye
+    fill(this.eyeBallCol);
+    ellipse(this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
+    fill(this.eyeCentreCol);
     ellipse(this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
   }
   drawNose(){
