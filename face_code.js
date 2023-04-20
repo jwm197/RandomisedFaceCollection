@@ -45,20 +45,19 @@ class Face{
   eyeY=-3;
   
   constructor(){
-    this.sideBurn=sideBurns[Math.floor(random() * sideBurns.length)];
+    this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
     if(this.sideBurn!="none"){
-      this.sideBurnHeight=random(minSideBurnHeight,maxSideBurnHeight);
+      this.sideBurnHeight=this.random(minSideBurnHeight,maxSideBurnHeight);
     }
-    this.noseWidth=random(minNoseWidth,maxNoseWidth);
-    this.noseHeight=random(minNoseHeight,maxNoseHeight);
-    this.noseDirection=noseDirections[Math.floor(random() * noseDirections.length)];
-    this.noseY=random(minNoseY,maxNoseY);
-    this.eyeX=random(minEyeX,maxEyeX);
-    this.eyeWidth=random(minEyeWidth,maxEyeWidth);
-    this.eyeHeight=random(minEyeHeight,maxEyeHeight);
-    this.innerEyeWidth=random(minInnerEyeWidth,maxInnerEyeWidth);
-    this.innerEyeHeight=random(minInnerEyeHeight,maxInnerEyeHeight);
-
+    this.noseWidth=this.random(minNoseWidth,maxNoseWidth);
+    this.noseHeight=this.random(minNoseHeight,maxNoseHeight);
+    this.noseDirection=noseDirections[Math.floor(Math.random() * noseDirections.length)];
+    this.noseY=this.random(minNoseY,maxNoseY);
+    this.eyeX=this.random(minEyeX,maxEyeX);
+    this.eyeWidth=this.random(minEyeWidth,maxEyeWidth);
+    this.eyeHeight=this.random(minEyeHeight,maxEyeHeight);
+    this.innerEyeWidth=this.random(minInnerEyeWidth,maxInnerEyeWidth);
+    this.innerEyeHeight=this.random(minInnerEyeHeight,maxInnerEyeHeight);
     // this.headHeight=8;
     // this.headWidth=8; 
     
@@ -68,6 +67,11 @@ class Face{
    
   }
   
+  /**Random function that generates a random number in a range 
+   * This is needed as the p5js one crashes the program if called directly in the contructor on the editor page**/
+  random(min,max){
+    return Math.random()*(max - min) + min;
+  }
   
   drawSkin(){
     rectMode(CENTER);
@@ -90,14 +94,33 @@ class Face{
   }
   drawHair(){
     fill(this.hairColour);
-    triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, this.headWidth/2, -this.headHeight/2, this.headWidth/2,-this.hairHeight);
+    
+    beginShape();
+    vertex(-this.headWidth/2-this.earWidth, -this.headHeight/2);
+    vertex(this.headWidth/2,-this.hairHeight);
+    vertex(this.headWidth/2, -this.headHeight/2);
+    
     if(this.sideBurn=="square"){
-      quad(-this.headWidth/2-this.earWidth, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2+this.sideBurnHeight, -this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight)
-     
+    vertex(-this.headWidth/2, -this.headHeight/2);
+    vertex(-this.headWidth/2, -this.headHeight/2+this.sideBurnHeight);  
+    vertex(-this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight);
+      
     }
     else if(this.sideBurn=="triangle"){
-      triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2, -this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight)
+      vertex(-this.headWidth/2, -this.headHeight/2);
+      vertex(-this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight);
     }
+    vertex();
+    endShape(CLOSE);
+    stroke(0);
+    // triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, this.headWidth/2, -this.headHeight/2, this.headWidth/2,-this.hairHeight);
+    // if(this.sideBurn=="square"){
+    //   quad(-this.headWidth/2-this.earWidth, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2+this.sideBurnHeight, -this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight)
+     
+    // }
+    // else if(this.sideBurn=="triangle"){
+    //   triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2, -this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight)
+    // }
   }
   drawEar(){
     fill(this.skinColour);

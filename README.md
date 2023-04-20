@@ -1,1 +1,1 @@
-I have just fixed the weird interaction of nose being drawn in front of the eyes and half an eye being behind the other and another half in front if they are close enough.
+I have made the sideburn and main hair a single shape to prevent the strokes from doing weird things at the edges as much. There is still this effect with the main body and the within consistent strokes.  
