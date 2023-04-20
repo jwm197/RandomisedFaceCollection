@@ -11,7 +11,10 @@ const millisPerSwap = 3000;
 
 // global variables for colors
 const bg_color1 = [71, 222, 219];
+let faceList=[];
+
 function setup () {
+  
   // create the drawing canvas, save the canvas element
   let main_canvas = createCanvas(canvasWidth, canvasHeight);
   main_canvas.parent('canvasContainer');
@@ -20,17 +23,27 @@ function setup () {
 
   // rotation in degrees
   angleMode(DEGREES);
+  for(let i=0;i<28;i++){
+    let x=faceList.push(new Face())
+    
+  }
 }
 
 function changeRandomSeed() {
   curRandomSeed = curRandomSeed + 1;
   lastSwapTime = millis();
+  faceList=[];
+  for(let i=0;i<28;i++){
+    let x=faceList.push(new Face())
+    
+  }
 }
 
 
 
 function mouseClicked() {
   changeRandomSeed();
+  
 }
 
 function draw () {
@@ -43,36 +56,28 @@ function draw () {
 
   // clear screen
   background(bg_color1);
-  noStroke();
+  
+  //noStroke();
 
   // draw a 7x4 grid of faces
-  let w = canvasWidth / 7;
-  let h = canvasHeight / 4;
-  for(let i=0; i<4; i++) {
-    for(let j=0; j<7; j++) {
-      let y = h/2 + h*i;
-      let x = w/2 + w*j;
-     
-        // // center face
-        // let eye_value = int(random(2,4));
-        // let tilt_value = random(-45, 45);
-        // let mouth_value = random(3,4);
-        // let is_cyclops = random(0, 100);
+  let face_size = canvasWidth / 5;
+  let face_scale = face_size / 10;
+  let face_y = height / 2;
+  let face_x = width / 2;
 
-        // if(is_cyclops < 10) {
-        //   eye_value = 1;
-        //   tilt_value = random(-5, 5);
-        //   mouth_value = random(0, 1.7);
-        // }
-
+  for(let i=0; i<5; i++) {
+    // for(let j=0; j<3; j++) {
+      // let y = h/2 + 20*h*i;
+      // let x = w/2 + 20*w*j;
         push();
-        translate(x, y);
-        scale(w/25, h/25);
-        new Face().drawFace();
+        translate((i)*width/4,height/2);
+        scale(face_scale);
+        faceList[i].drawFace();
+        //faceList[i*j+j].drawFace();
         //orangeAlienFace(tilt_value, eye_value, mouth_value);
         pop();
       
-    }
+    //}
   }
 }
 

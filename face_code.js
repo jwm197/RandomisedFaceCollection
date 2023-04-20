@@ -16,6 +16,18 @@ const minNoseY=-1.5;
 const maxNoseY=1.5; 
 const noseDirections = ["left", "right", "both"];
 const sideBurns = ["none", "square", "triangle"];
+const minEyeX=.5;
+const maxEyeX=5; 
+const minEyeWidth=.5
+const maxEyeWidth=5;
+const minEyeHeight=.5;
+const maxEyeHeight=5;
+const minInnerEyeWidth=.1;
+const maxInnerEyeWidth=.9;
+const minInnerEyeHeight=.1;
+const maxInnerEyeHeight=.9;
+
+
 class Face{
   headHeight=8;
   headWidth=8; 
@@ -28,16 +40,24 @@ class Face{
   
   sideBurnHeight=0;
   noseX=0;
+  eyeBallCol=255;
+  eyeCentreCol=0;
+  eyeY=-3;
   
   constructor(){
-    this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
+    this.sideBurn=sideBurns[Math.floor(random() * sideBurns.length)];
     if(this.sideBurn!="none"){
-      this.sideBurnHeight=Math.random(minSideBurnHeight,maxSideBurnHeight);
+      this.sideBurnHeight=random(minSideBurnHeight,maxSideBurnHeight);
     }
-    this.noseWidth=Math.random(minNoseWidth,maxNoseWidth);
-    this.noseHeight=Math.random(minNoseHeight,maxNoseHeight);
-    this.noseDirection=noseDirections[Math.floor(Math.random() * noseDirections.length)];
-    this.noseY=Math.random(minNoseY,maxNoseY);
+    this.noseWidth=random(minNoseWidth,maxNoseWidth);
+    this.noseHeight=random(minNoseHeight,maxNoseHeight);
+    this.noseDirection=noseDirections[Math.floor(random() * noseDirections.length)];
+    this.noseY=random(minNoseY,maxNoseY);
+    this.eyeX=random(minEyeX,maxEyeX);
+    this.eyeWidth=random(minEyeWidth,maxEyeWidth);
+    this.eyeHeight=random(minEyeHeight,maxEyeHeight);
+    this.innerEyeWidth=random(minInnerEyeWidth,maxInnerEyeWidth);
+    this.innerEyeHeight=random(minInnerEyeHeight,maxInnerEyeHeight);
     // this.headHeight=8;
     // this.headWidth=8; 
     
@@ -57,9 +77,11 @@ class Face{
     
   }
   drawFace(){
+    strokeWeight(0.2);
     this.drawEar();
     this.drawHair();
     this.drawSkin();
+    this.drawEye();
     this.drawNose();
     
     
@@ -81,7 +103,12 @@ class Face{
 
   }
   drawEye(){
-
+    fill(this.eyeBallCol);
+    ellipse(-this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
+    ellipse(this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
+    fill(this.eyeCentreCol);
+    ellipse(-this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+    ellipse(this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
   }
   drawNose(){
     if(this.noseDirection=="left"){

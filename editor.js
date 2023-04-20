@@ -7,7 +7,8 @@ const canvasHeight = 500;
 const face=new Face();
 const bg_color = [71, 222, 219];
 let slider1, slider2, slider3, slider4, slider5;
-let slider6, slider7, slider8, slider9, slider10;
+let slider6, slider7, slider8, slider9, slider10,slider11,slider12,slider13,slider14,slider15;
+let slider16,slider17,slider18,slider19,slider20;
 let faceSelector;
 let faceGuideCheckbox;
 
@@ -28,6 +29,16 @@ function setup () {
   slider8 = createSlider(0, 100, 50);
   slider9 = createSlider(0, 100, 50);
   slider10 = createSlider(0, 100, 50);
+  slider11 = createSlider(0, 100, 50);
+  slider12 = createSlider(0, 100, 50);
+  slider13 = createSlider(0, 100, 50);
+  slider14 = createSlider(0, 100, 50);
+  slider15 = createSlider(0, 100, 50);
+  slider16 = createSlider(0, 100, 50);
+  slider17 = createSlider(0, 100, 50);
+  slider18 = createSlider(0, 100, 50);
+  slider19 = createSlider(0, 100, 50);
+  slider20 = createSlider(0, 100, 50);
 
   slider1.parent('slider1Container');
   slider2.parent('slider2Container');
@@ -39,6 +50,16 @@ function setup () {
   slider8.parent('slider8Container');
   slider9.parent('slider9Container');
   slider10.parent('slider10Container');
+  slider11.parent('slider11Container');
+  slider12.parent('slider12Container');
+  slider13.parent('slider13Container');
+  slider14.parent('slider14Container');
+  slider15.parent('slider15Container');
+  slider16.parent('slider16Container');
+  slider17.parent('slider17Container');
+  slider18.parent('slider18Container');
+  slider19.parent('slider19Container');
+  slider20.parent('slider20Container');
 
   faceGuideCheckbox = createCheckbox('', false);
   faceGuideCheckbox.parent('checkbox1Container');
@@ -70,6 +91,16 @@ function draw () {
   let s8 = slider8.value();
   let s9 = slider9.value();
   let s10 = slider10.value();
+  let s11 = slider11.value();
+  let s12 = slider12.value();
+  let s13 = slider13.value();
+  let s14 = slider14.value();
+  let s15 = slider15.value();
+  let s16 = slider16.value();
+  let s17 = slider17.value();
+  let s18 = slider18.value();
+  let s19 = slider19.value();
+  let s20 = slider20.value();
 
   let show_face_guide = faceGuideCheckbox.checked();
 
@@ -92,9 +123,12 @@ function draw () {
    face.noseHeight=map(s4, 0, 100, minNoseHeight, maxNoseHeight);
    face.noseDirection=noseDirections[Math.floor(map(s5, 0, 100, 0,noseDirections.length))];
    face.noseY=map(s6, 0, 100, minNoseY, maxNoseY);
-  //  let mouth_value = map(s2, 0, 100, 0.5, 10);
-  //  let eye_value = int(map(s3, 0, 100, 1, 3));
-   //orangeAlienFace(tilt_value, eye_value, mouth_value);
+   face.eyeX=map(s7, 0, 100, minEyeX, maxEyeX);
+   face.eyeWidth=map(s8, 0, 100, minEyeWidth, maxEyeWidth);
+   face.eyeHeight=map(s9, 0, 100, minEyeHeight, maxEyeHeight);
+   face.innerEyeWidth=map(s10, 0, 100, minInnerEyeWidth, maxInnerEyeWidth);
+   face.innerEyeHeight=map(s11, 0, 100, minInnerEyeHeight, maxInnerEyeHeight);
+
    face.drawFace();
   
 

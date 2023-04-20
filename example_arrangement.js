@@ -61,7 +61,7 @@ function draw () {
         push();
         translate(x, y);
         scale(w/25, h/25);
-        new Face().drawFace();
+        //new Face().drawFace();
         //orangeAlienFace(tilt_value, eye_value, mouth_value);
         pop();
       }
