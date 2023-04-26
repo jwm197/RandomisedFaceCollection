@@ -26,7 +26,13 @@ const minInnerEyeWidth=.1;
 const maxInnerEyeWidth=.9;
 const minInnerEyeHeight=.1;
 const maxInnerEyeHeight=.9;
-
+const minEarY=-1;
+const maxEarY=1;
+const earShapes=["circle","triangle","square"];
+const minInnerEarWidth=0.1;
+const maxInnerEarWidth=0.8;
+const minInnerEarHeight=.1;
+const maxInnerEarHeight=0.9;
 
 class Face{
   headHeight=8;
@@ -43,6 +49,9 @@ class Face{
   eyeBallCol=255;
   eyeCentreCol=0;
   eyeY=-3;
+  mouthColour=255;
+  innerEarCol=0;
+  
   
   constructor(){
     this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
@@ -58,6 +67,11 @@ class Face{
     this.eyeHeight=this.random(minEyeHeight,maxEyeHeight);
     this.innerEyeWidth=this.random(minInnerEyeWidth,maxInnerEyeWidth);
     this.innerEyeHeight=this.random(minInnerEyeHeight,maxInnerEyeHeight);
+    this.earShape=earShapes[Math.floor(Math.random() * earShapes.length)];
+    this.earY=this.random(minEarY,maxEarY);
+    this.innerEarWidth=this.earWidth*this.random(minInnerEarWidth,maxInnerEarWidth);
+    this.innerEarHeight=this.headHeight*this.random(minInnerEarHeight,maxInnerEarHeight);
+   
     // this.headHeight=8;
     // this.headWidth=8; 
     
@@ -68,7 +82,7 @@ class Face{
   }
   
   /**Random function that generates a random number in a range 
-   * This is needed as the p5js one crashes the program if called directly in the contructor on the editor page**/
+   * This is needed as the p5js one crashes the program if called directly in the constructor on the editor page**/
   random(min,max){
     return Math.random()*(max - min) + min;
   }
@@ -86,11 +100,31 @@ class Face{
     this.drawEar();
     this.drawHair();
     this.drawSkin();
-    
+    this.drawMouth();
     this.drawNose();
     this.drawEyes();
     
     
+  }
+  drawEar(){
+    fill(this.skinColour);
+    rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
+    fill(this.innerEarCol);
+    if(this.earShape=="circle"){
+      ellipseMode(CENTER);
+      ellipse(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
+    }
+    else if(this.earShape=="square"){
+      rectMode(CENTER);
+      rect(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
+    }
+    else if(this.earShape=="triangle"){
+      triangle(-this.headWidth/2-this.earWidth/2-this.innerEyeWidth/2,this.EarY-this.innerEarHeight/2,-this.headWidth/2-this.earWidth/2-this.innerEyeWidth/2,this.EarY+this.innerEarHeight/2,-this.headWidth/2-this.earWidth/2+this.innerEyeWidth/2,this.earY);
+    }
+  }
+  drawMouth(){
+    fill(this.mouthColour);
+
   }
   drawHair(){
     fill(this.hairColour);
@@ -122,11 +156,6 @@ class Face{
     //   triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2, -this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight)
     // }
   }
-  drawEar(){
-    fill(this.skinColour);
-    rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
-
-  }
   drawEyes(){
     //left eye
     fill(this.eyeBallCol);
@@ -156,77 +185,3 @@ class Face{
 
 
 }
-
-
-
-// /*
-//  * tilt_value is in degrees
-//  * eye_value is an integer number of eyes: either 0, 1, 2, or 3
-//  * mouth_value is how open the mouth is and should generally range from 0.5 to 10
-//  */
-// function orangeAlienFace(tilt_value, eye_value, mouth_value) {
-//   const bg_color3 = [71, 222, 219];
-//   const fg_color3 = [255, 93, 35];
-
-//   let headSize = 20
-//   let eyeSize = 5;
-//   let centerX = 0;
-//   let Iy = -4
-//   let distactBetweenEyes = 5
-//   let MouthDrop = 7
-  
-//   // rotation in degrees
-//   angleMode(DEGREES);
-//   rotate(tilt_value);
-
-//  // head
-//   noStroke();
-//   fill(fg_color3);
-//   ellipse(centerX, 0, headSize, headSize);
-
-//   // 2 traditonal eyes
-//   if (eye_value === 1 || eye_value == 3) {
-//     fill(bg_color3);
-//     ellipse(centerX, Iy, eyeSize-1,eyeSize);
-   
-//   }
-// // middle eye
-//   if (eye_value >= 2) {
-//     fill(bg_color3);
-//     ellipse(centerX - distactBetweenEyes, Iy, eyeSize);
-//     ellipse(centerX + distactBetweenEyes, Iy, eyeSize );
-//   }
-
-//   // mouth
-//   fill(bg_color3);
-//   ellipse(centerX, Iy + MouthDrop, distactBetweenEyes, mouth_value);
-// }
-
-
-// function simplePurpleFace() {
-//   fill(234, 122, 244);
-//   noStroke();
-//   // head
-//   ellipse(0, 0, 20);
-//   // eyes
-//   fill(255, 217, 114);
-//   ellipse(-3, -3, 3);
-//   ellipse( 3, -3, 3);
-// }
-
-// /*
-//  * thinness_value ranges from 0-100 and indicates how thin the face is
-//  */
-// function blockyFace(thinness_value) {
-//   // head
-//   noStroke();
-//   fill(134, 19, 136);
-//   let head_width = map(thinness_value, 0, 100, 8, 20);
-//   rect(-head_width/2, -9, head_width, 18);
- 
-
-//   // eyes
-//   fill(234, 122, 244);
-//   ellipse(-2, -4, 1);
-//   ellipse( 2, -4, 1);
-// }
