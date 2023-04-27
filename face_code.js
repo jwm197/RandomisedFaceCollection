@@ -30,7 +30,7 @@ const minEarY=-1;
 const maxEarY=1;
 const earShapes=["circle","triangle","square"];
 const minInnerEarWidth=0.1;
-const maxInnerEarWidth=0.8;
+const maxInnerEarWidth=0.6;
 const minInnerEarHeight=.1;
 const maxInnerEarHeight=0.9;
 
@@ -119,7 +119,9 @@ class Face{
       rect(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
     }
     else if(this.earShape=="triangle"){
-      triangle(-this.headWidth/2-this.earWidth/2-this.innerEyeWidth/2,this.EarY-this.innerEarHeight/2,-this.headWidth/2-this.earWidth/2-this.innerEyeWidth/2,this.EarY+this.innerEarHeight/2,-this.headWidth/2-this.earWidth/2+this.innerEyeWidth/2,this.earY);
+      triangle(-this.headWidth/2-this.earWidth/2-this.innerEarWidth/2,this.earY-this.innerEarHeight/2,
+      -this.headWidth/2-this.earWidth/2-this.innerEarWidth/2,this.earY+this.innerEarHeight/2,
+      -this.headWidth/2-this.earWidth/2+this.innerEarWidth/2,this.earY);
     }
   }
   drawMouth(){
