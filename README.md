@@ -1,1 +1,1 @@
-I have fixed the ear triangle so it draws properly. When the height of the inner ear gets too big the inner ear sticks into the hair and even somtimes out the top or bottom of the face which means the range needs significantly adjusting. I also think having the inner ear without a fill is the way to go.  
+I have implemented side scrolling on the arrangement page. It think this effect works really well although more details will be needed to add to the background such as a road. 

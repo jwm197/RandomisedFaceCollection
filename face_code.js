@@ -35,6 +35,7 @@ const minInnerEarHeight=.1;
 const maxInnerEarHeight=0.9;
 
 class Face{
+  
   headHeight=8;
   headWidth=8; 
   
@@ -50,10 +51,11 @@ class Face{
   eyeCentreCol=0;
   eyeY=-3;
   mouthColour=255;
-  innerEarCol=0;
+  innerEarCol=this.skinColour;
   
   
   constructor(){
+    this.faceX=0;
     this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
     if(this.sideBurn!="none"){
       this.sideBurnHeight=this.random(minSideBurnHeight,maxSideBurnHeight);

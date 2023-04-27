@@ -12,7 +12,8 @@ const millisPerSwap = 3000;
 // global variables for colors
 const bg_color1 = [71, 222, 219];
 let faceList=[];
-
+const numberOfFaces=8;
+let xOffset=0;
 function setup () {
   
   // create the drawing canvas, save the canvas element
@@ -23,26 +24,29 @@ function setup () {
 
   // rotation in degrees
   angleMode(DEGREES);
-  for(let i=0;i<28;i++){
-    let x=faceList.push(new Face())
+  generateFaceList();
+}
+function generateFaceList(){
+  faceList=[];
+  for(let i=0;i<numberOfFaces;i++){
+    let face=new Face();
+    face.faceX=i*width/4;
+    faceList.push(face);
     
   }
 }
-
 function changeRandomSeed() {
   curRandomSeed = curRandomSeed + 1;
   lastSwapTime = millis();
-  faceList=[];
-  for(let i=0;i<28;i++){
-    let x=faceList.push(new Face())
-    
-  }
+  
+  
 }
 
 
 
 function mouseClicked() {
   changeRandomSeed();
+  generateFaceList();
   
 }
 
@@ -56,7 +60,7 @@ function draw () {
 
   // clear screen
   background(bg_color1);
-  
+
   //noStroke();
 
   // draw a 7x4 grid of faces
@@ -65,20 +69,24 @@ function draw () {
   let face_y = height / 2;
   let face_x = width / 2;
 
-  for(let i=0; i<5; i++) {
-    // for(let j=0; j<3; j++) {
-      // let y = h/2 + 20*h*i;
-      // let x = w/2 + 20*w*j;
-        push();
-        translate((i)*width/4,height/2);
-        scale(face_scale);
-        faceList[i].drawFace();
-        //faceList[i*j+j].drawFace();
-        //orangeAlienFace(tilt_value, eye_value, mouth_value);
-        pop();
-      
-    //}
+  for(let i=0; i<faceList.length; i++) {
+    push();
+    //translate((i)*width/4+xOffset,height/2);
+    translate(faceList[i].faceX,height/2);
+    scale(face_scale);
+    faceList[i].drawFace();
+    //xOffset-=.5;
+    faceList[i].faceX-=3;
+    pop();
   }
+  if(faceList[0].faceX<=-canvasWidth/4){
+    faceList.splice(0,1);
+    let face=new Face();
+    face.faceX=faceList.length*width/4;
+    faceList.push(face);
+  }
+  
+  
 }
 
 function keyTyped() {
