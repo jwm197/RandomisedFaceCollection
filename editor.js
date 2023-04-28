@@ -133,6 +133,12 @@ function draw () {
    face.earY=map(s13, 0, 100, minEarY, maxEarY);
    face.innerEarWidth=face.earWidth*map(s14, 0, 100, minInnerEarWidth, maxInnerEarWidth);
    face.innerEarHeight=face.headHeight*map(s15, 0, 100, minInnerEarHeight, maxInnerEarHeight);
+   face.hasTeeth=0.5<map(s16, 0, 100, 0,1);
+   face.mouthWidth=map(s17, 0, 100, minMouthWidth,maxMouthWidth);
+   face.mouthHeight=map(s18,0,100,minMouthHeight,face.getMaxMouthHeight());
+   face.mouthY=map(s19, 0, 100, face.getMinMouthY(), face.getMaxMouthY());
+   face.numberOfteeth=Math.floor(map(s20, 0, 100, minNumberOfteeth,maxNumberOfTeeth));
+   
    face.drawFace();
   
 

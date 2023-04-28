@@ -27,12 +27,16 @@ const minInnerEyeHeight=.1;
 const maxInnerEyeHeight=.9;
 const minEarY=-1;
 const maxEarY=1;
-const earShapes=["circle","triangle","square"];
+const earShapes=["circle","triangle","square","none"];
 const minInnerEarWidth=0.1;
 const maxInnerEarWidth=0.6;
 const minInnerEarHeight=.1;
 const maxInnerEarHeight=0.9;
-
+const minMouthHeight=.5;
+const minMouthWidth=.5;
+const maxMouthWidth=7
+const minNumberOfteeth=3;
+const maxNumberOfTeeth=8;
 class Face{
   
   headHeight=8;
@@ -73,7 +77,11 @@ class Face{
     this.earY=this.random(minEarY,maxEarY);
     this.innerEarWidth=this.earWidth*this.random(minInnerEarWidth,maxInnerEarWidth);
     this.innerEarHeight=this.headHeight*this.random(minInnerEarHeight,maxInnerEarHeight);
-   
+    this.mouthHeight=this.random(minMouthHeight,this.getMaxMouthHeight());
+    this.mouthWidth=this.random(minMouthWidth,maxMouthWidth);
+    this.hasTeeth=Math.random()<0.5;
+    this.mouthY=this.random(this.getMinMouthY(),this.getMaxMouthY());
+    this.numberOfteeth=Math.floor(this.random(minNumberOfteeth,maxNumberOfTeeth));
     // this.headHeight=8;
     // this.headWidth=8; 
     
@@ -90,6 +98,15 @@ class Face{
   }
   getMaxEyeX(){
     return this.headWidth/2+this.eyeWidth/2;
+  }
+  getMinMouthY(){
+    return this.noseY+this.noseHeight/2+this.mouthHeight/2; 
+  }
+  getMaxMouthY(){
+    return this.headHeight/2-this.mouthHeight/2;
+  }
+  getMaxMouthHeight(){
+    return this.headHeight/2-(this.noseY+this.noseHeight/2);
   }
   
   drawSkin(){
@@ -131,7 +148,14 @@ class Face{
   }
   drawMouth(){
     fill(this.mouthColour);
-
+    rectMode(CENTER);
+    rect(0,this.mouthY,this.mouthWidth,this.mouthHeight);
+    if(this.hasTeeth){
+      line(-this.mouthWidth/2,this.mouthY,this.mouthWidth/2,this.mouthY);
+      for(let i=1;i<this.numberOfteeth;i++){
+        line(-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY-this.mouthHeight/2,-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY+this.mouthHeight/2);
+      }
+    }
   }
   drawHair(){
     fill(this.hairColour);
