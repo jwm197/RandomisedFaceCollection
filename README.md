@@ -1,1 +1,2 @@
-I have implemented side scrolling on the arrangement page. It think this effect works really well although more details will be needed to add to the background such as a road. 
+
+I have made it so there is a single eye in the middle of the head if the eyes were going to overlap. This works much better as it no longer looks weird. However the eye can overlap the nose now when this happens which also now looks weird which will need fixing. 

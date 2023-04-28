@@ -61,14 +61,9 @@ function draw () {
   // clear screen
   background(bg_color1);
 
-  //noStroke();
 
-  // draw a 7x4 grid of faces
   let face_size = canvasWidth / 5;
   let face_scale = face_size / 10;
-  let face_y = height / 2;
-  let face_x = width / 2;
-
   for(let i=0; i<faceList.length; i++) {
     push();
     //translate((i)*width/4+xOffset,height/2);

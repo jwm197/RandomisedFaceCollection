@@ -161,17 +161,23 @@ class Face{
     // }
   }
   drawEyes(){
+    //make a cyclops if the eyes will overlap   
+    if(this.eyeX-this.eyeWidth/2<0){
+      this.eyeX=0;
+    }
     //left eye
     fill(this.eyeBallCol);
     ellipse(-this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
     fill(this.eyeCentreCol);
     ellipse(-this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
     
-    //right eye
-    fill(this.eyeBallCol);
-    ellipse(this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
-    fill(this.eyeCentreCol);
-    ellipse(this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+    //draw right eye if not a cyclops
+    if(this.eyeX!=0){
+      fill(this.eyeBallCol);
+      ellipse(this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
+      fill(this.eyeCentreCol);
+      ellipse(this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+    }
   }
   drawNose(){
     if(this.noseDirection=="left"){
