@@ -1,2 +1,1 @@
-
-I have made it so there is a single eye in the middle of the head if the eyes were going to overlap. This works much better as it no longer looks weird. However the eye can overlap the nose now when this happens which also now looks weird which will need fixing. 
+I have made it so the eyes have to be connected to the head because when the eyeX var was large and the eye width was small the eyes could be off the side of the face. This works much better but I am considering having it so the eyes cannot stick out as far off the edge and have to have the centre of them on the face but I am not sure. 

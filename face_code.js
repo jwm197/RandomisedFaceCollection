@@ -17,7 +17,6 @@ const maxNoseY=1.5;
 const noseDirections = ["left", "right", "both"];
 const sideBurns = ["none", "square", "triangle"];
 const minEyeX=.5;
-const maxEyeX=5; 
 const minEyeWidth=.5
 const maxEyeWidth=5;
 const minEyeHeight=.5;
@@ -64,8 +63,9 @@ class Face{
     this.noseHeight=this.random(minNoseHeight,maxNoseHeight);
     this.noseDirection=noseDirections[Math.floor(Math.random() * noseDirections.length)];
     this.noseY=this.random(minNoseY,maxNoseY);
-    this.eyeX=this.random(minEyeX,maxEyeX);
+   
     this.eyeWidth=this.random(minEyeWidth,maxEyeWidth);
+    this.eyeX=this.random(minEyeX,this.getMaxEyeX());
     this.eyeHeight=this.random(minEyeHeight,maxEyeHeight);
     this.innerEyeWidth=this.random(minInnerEyeWidth,maxInnerEyeWidth);
     this.innerEyeHeight=this.random(minInnerEyeHeight,maxInnerEyeHeight);
@@ -87,6 +87,9 @@ class Face{
    * This is needed as the p5js one crashes the program if called directly in the constructor on the editor page**/
   random(min,max){
     return Math.random()*(max - min) + min;
+  }
+  getMaxEyeX(){
+    return this.headWidth/2+this.eyeWidth/2;
   }
   
   drawSkin(){

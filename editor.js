@@ -123,11 +123,12 @@ function draw () {
    face.noseHeight=map(s4, 0, 100, minNoseHeight, maxNoseHeight);
    face.noseDirection=noseDirections[Math.floor(map(s5, 0, 100, 0,noseDirections.length))];
    face.noseY=map(s6, 0, 100, minNoseY, maxNoseY);
-   face.eyeX=map(s7, 0, 100, minEyeX, maxEyeX);
+   
    face.eyeWidth=map(s8, 0, 100, minEyeWidth, maxEyeWidth);
    face.eyeHeight=map(s9, 0, 100, minEyeHeight, maxEyeHeight);
    face.innerEyeWidth=map(s10, 0, 100, minInnerEyeWidth, maxInnerEyeWidth);
    face.innerEyeHeight=map(s11, 0, 100, minInnerEyeHeight, maxInnerEyeHeight);
+   face.eyeX=map(s7, 0, 100, minEyeX, face.getMaxEyeX());
    face.earShape=earShapes[Math.floor(map(s12, 0, 100, 0,earShapes.length))];
    face.earY=map(s13, 0, 100, minEarY, maxEarY);
    face.innerEarWidth=face.earWidth*map(s14, 0, 100, minInnerEarWidth, maxInnerEarWidth);
