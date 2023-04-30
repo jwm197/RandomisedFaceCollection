@@ -1,1 +1,1 @@
-I have added a separation between the mouth and the nose as it looked weird that the nose could go right up against the nose or even behind it at some points. This is done by forcing the nose to not be as tall if the edge between it and the nose is too small. This makes These element look less squashed. 
+I have made it so if the mouth is not wide enough to have teeth without the mouth just looking black it doesn't draw them. This means the mouth doesn't just look black sometimes which just looks weird.  

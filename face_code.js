@@ -38,6 +38,7 @@ const maxMouthWidth=7
 const minNumberOfteeth=3;
 const maxNumberOfTeeth=8;
 const minMouthNoseGap=.25;
+const myStrokeWeight=0.2;
 class Face{
   
   headHeight=8;
@@ -119,7 +120,7 @@ class Face{
     
   }
   drawFace(){
-    strokeWeight(0.2);
+    strokeWeight(myStrokeWeight);
     this.drawEar();
     this.drawHair();
     this.drawSkin();
@@ -151,7 +152,10 @@ class Face{
     fill(this.mouthColour);
     rectMode(CENTER);
     rect(0,this.mouthY,this.mouthWidth,this.mouthHeight);
-    if(this.hasTeeth){
+   // console.log(this.numberOfteeth-this.mouthWidth/this.numberOfteeth);
+   //draw teeth if face has teeth and the teeth won't make the mouth completely filled with the stroke
+    if(this.hasTeeth&&!this.mouthWidth/this.numberOfteeth+myStrokeWeight*1.1<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight*1.1){
+      //console.log(this.mouthWidth/this.numberOfteeth+myStrokeWeight/2<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight/2);
       line(-this.mouthWidth/2,this.mouthY,this.mouthWidth/2,this.mouthY);
       for(let i=1;i<this.numberOfteeth;i++){
         line(-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY-this.mouthHeight/2,-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY+this.mouthHeight/2);
