@@ -13,7 +13,7 @@ const millisPerSwap = 3000;
 const bg_color1 = [71, 222, 219];
 let faceList=[];
 const numberOfFaces=8;
-let xOffset=0;
+let scrollSpeed=3;
 function setup () {
   
   // create the drawing canvas, save the canvas element
@@ -70,8 +70,7 @@ function draw () {
     translate(faceList[i].faceX,height/2);
     scale(face_scale);
     faceList[i].drawFace();
-    //xOffset-=.5;
-    faceList[i].faceX-=3;
+    faceList[i].faceX-=scrollSpeed;
     pop();
   }
   if(faceList[0].faceX<=-canvasWidth/4){

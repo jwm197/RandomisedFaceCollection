@@ -37,6 +37,7 @@ const minMouthWidth=.5;
 const maxMouthWidth=7
 const minNumberOfteeth=3;
 const maxNumberOfTeeth=8;
+const minMouthNoseGap=.25;
 class Face{
   
   headHeight=8;
@@ -207,14 +208,22 @@ class Face{
     }
   }
   drawNose(){
+    //make gap between mouth and nose if nose and mouth are too close
+    let noseHeightReduction=0;
+    if(this.noseY+this.noseHeight/2+minMouthNoseGap>=this.mouthY-this.mouthHeight/2){
+      noseHeightReduction=minMouthNoseGap;
+    }
+    //draw left facing:
     if(this.noseDirection=="left"){
-      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2);
+      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
     }
+    //draw right facing:
     else if(this.noseDirection=="right"){
-      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2);
+      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
     }
+    //drawn symetrical nose
     else{
-      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2);
+      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
     }
   }
 

@@ -138,7 +138,7 @@ function draw () {
    face.mouthHeight=map(s18,0,100,minMouthHeight,face.getMaxMouthHeight());
    face.mouthY=map(s19, 0, 100, face.getMinMouthY(), face.getMaxMouthY());
    face.numberOfteeth=Math.floor(map(s20, 0, 100, minNumberOfteeth,maxNumberOfTeeth));
-   
+   console.log(face.noseY);
    face.drawFace();
   
 
