@@ -68,6 +68,7 @@ class Face{
   mouthColour=255;
   innerEarCol=this.skinColour;
   eyeStroke=true; 
+  earShape="none";
   
   constructor(){
     this.faceX=0;
@@ -85,7 +86,9 @@ class Face{
     this.eyeHeight=this.random(minEyeHeight,maxEyeHeight);
     this.innerEyeWidth=this.random(minInnerEyeWidth,maxInnerEyeWidth);
     this.innerEyeHeight=this.random(minInnerEyeHeight,maxInnerEyeHeight);
+    
     this.earShape=earShapes[Math.floor(Math.random() * earShapes.length)];
+   
     this.earY=this.random(minEarY,maxEarY);
     this.innerEarWidth=this.earWidth*this.random(minInnerEarWidth,maxInnerEarWidth);
     this.innerEarHeight=this.headHeight*this.random(minInnerEarHeight,maxInnerEarHeight);
@@ -136,6 +139,9 @@ class Face{
     
   }
   drawEar(){
+    if (this.noseDirection=="left"){
+      this.earShape="none";
+    }
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
     fill(this.innerEarCol);
@@ -157,7 +163,6 @@ class Face{
     fill(this.mouthColour);
     rectMode(CENTER);
     rect(0,this.mouthY,this.mouthWidth,this.mouthHeight);
-   // console.log(this.numberOfteeth-this.mouthWidth/this.numberOfteeth);
    //draw teeth if face has teeth and the teeth won't make the mouth completely filled with the stroke
     if(this.hasTeeth&&!this.mouthWidth/this.numberOfteeth+myStrokeWeight*1.1<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight*1.1){
       //console.log(this.mouthWidth/this.numberOfteeth+myStrokeWeight/2<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight/2);
@@ -188,18 +193,10 @@ class Face{
     vertex();
     endShape(CLOSE);
     stroke(0);
-    // triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, this.headWidth/2, -this.headHeight/2, this.headWidth/2,-this.hairHeight);
-    // if(this.sideBurn=="square"){
-    //   quad(-this.headWidth/2-this.earWidth, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2+this.sideBurnHeight, -this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight)
-     
-    // }
-    // else if(this.sideBurn=="triangle"){
-    //   triangle(-this.headWidth/2-this.earWidth, -this.headHeight/2, -this.headWidth/2, -this.headHeight/2, -this.headWidth/2-this.earWidth, -this.headHeight/2+this.sideBurnHeight)
-    // }
   }
   drawEyes(){
     //resize the inner eye width or height so that there is some white in the eye if both are a large size
-    if(this.innerEyeWidth>innerEyeResizeSize&&this.innerEyeHeight>innerEyeResizeSize){
+    if(this.innerEyeWidth>innerEyeResizeSize&&this.innerEyeHeight>innerEyeResizeSize-.1){
       //do a more extreme resize if the eye is tiny and the pupil is big 
       if(this.innerEyeWidth+this.innerEyeHeight>=1.1&&this.eyeWidth+this.eyeHeight<3){
         
