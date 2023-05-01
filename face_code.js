@@ -6,8 +6,11 @@
  *
  * These functions are used by your final arrangement of faces as well as the face editor.
  */
+//sideburns
+const sideBurns = ["none", "square", "triangle"];
 const minSideBurnHeight=.1;
 const maxSideBurnHeight=3;
+//nose
 const minNoseHeight=0.5;
 const maxNoseHeight=4;
 const minNoseWidth=0.5;
@@ -15,16 +18,19 @@ const maxNoseWidth=6;
 const minNoseY=-1.5;
 const maxNoseY=1.5; 
 const noseDirections = ["left", "right", "both"];
-const sideBurns = ["none", "square", "triangle"];
+//eyes
 const minEyeX=.5;
-const minEyeWidth=.5
+const minEyeWidth=1;
 const maxEyeWidth=5;
-const minEyeHeight=.5;
+const minEyeHeight=1;
 const maxEyeHeight=5;
 const minInnerEyeWidth=.1;
-const maxInnerEyeWidth=.9;
+const maxInnerEyeWidth=1;
 const minInnerEyeHeight=.1;
-const maxInnerEyeHeight=.9;
+const maxInnerEyeHeight=1;
+const eyeResizeSize=1;
+const innerEyeResizeSize=0.7;
+//ear
 const minEarY=-1;
 const maxEarY=1;
 const earShapes=["circle","triangle","square","none"];
@@ -32,13 +38,17 @@ const minInnerEarWidth=0.1;
 const maxInnerEarWidth=0.6;
 const minInnerEarHeight=.1;
 const maxInnerEarHeight=0.9;
+//mouth
 const minMouthHeight=.5;
 const minMouthWidth=.5;
-const maxMouthWidth=7
+const maxMouthWidth=7;
 const minNumberOfteeth=3;
 const maxNumberOfTeeth=8;
 const minMouthNoseGap=.25;
+
+
 const myStrokeWeight=0.2;
+
 class Face{
   
   headHeight=8;
@@ -57,7 +67,7 @@ class Face{
   eyeY=-3;
   mouthColour=255;
   innerEarCol=this.skinColour;
-  
+  eyeStroke=true; 
   
   constructor(){
     this.faceX=0;
@@ -84,13 +94,8 @@ class Face{
     this.hasTeeth=Math.random()<0.5;
     this.mouthY=this.random(this.getMinMouthY(),this.getMaxMouthY());
     this.numberOfteeth=Math.floor(this.random(minNumberOfteeth,maxNumberOfTeeth));
-    // this.headHeight=8;
-    // this.headWidth=8; 
-    
-    // this.foreHeadHeight=5;
-    // this.hairHeight=10;
-    // this.earWidth=3;
    
+  
   }
   
   /**Random function that generates a random number in a range 
@@ -193,6 +198,35 @@ class Face{
     // }
   }
   drawEyes(){
+    //resize the inner eye width or height so that there is some white in the eye if both are a large size
+    if(this.innerEyeWidth>innerEyeResizeSize&&this.innerEyeHeight>innerEyeResizeSize){
+      //do a more extreme resize if the eye is tiny and the pupil is big 
+      if(this.innerEyeWidth+this.innerEyeHeight>=1.1&&this.eyeWidth+this.eyeHeight<3){
+        
+        if(this.innerEyeWidth<this.innerEyeHeight){
+          this.innerEyeWidth=.4;
+        }
+        else{
+          this.innerEyeHeight=.4;
+        }
+        this.eyeStroke=false;
+      }
+      //resize whichever is smaller of height and width to keep it about a 50% chance of which is being resized
+      else if(this.innerEyeWidth<this.innerEyeHeight){
+        this.innerEyeWidth=innerEyeResizeSize;
+      }
+      else{
+        this.innerEyeHeight=innerEyeResizeSize;
+      }
+    }
+     //resize the eyes if both the width and heigh are so small they just look black
+    
+     if(this.eyeWidth<eyeResizeSize&&this.eyeHeight<eyeResizeSize){
+      if(this.eyeWidth<this.eyeHeight){
+        this.eyeWidth=eyeResizeSize;
+      }
+    }
+
     //make a cyclops if the eyes will overlap   
     if(this.eyeX-this.eyeWidth/2<0){
       this.eyeX=0;
@@ -200,15 +234,24 @@ class Face{
     //left eye
     fill(this.eyeBallCol);
     ellipse(-this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
-    fill(this.eyeCentreCol);
-    ellipse(-this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+    if(!this.eyeStroke){
+      strokeWeight(0);
+    }
     
+    fill(this.eyeCentreCol);
+    
+    ellipse(-this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+    strokeWeight(myStrokeWeight);
     //draw right eye if not a cyclops
     if(this.eyeX!=0){
       fill(this.eyeBallCol);
       ellipse(this.eyeX, this.eyeY, this.eyeWidth, this.eyeHeight);
       fill(this.eyeCentreCol);
+      if(!this.eyeStroke){
+        strokeWeight(0);
+      }
       ellipse(this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+      strokeWeight(myStrokeWeight);
     }
   }
   drawNose(){
@@ -225,7 +268,7 @@ class Face{
     else if(this.noseDirection=="right"){
       triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
     }
-    //drawn symetrical nose
+    //draw symetrical nose
     else{
       triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
     }

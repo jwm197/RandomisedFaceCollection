@@ -11,8 +11,9 @@ const millisPerSwap = 3000;
 
 // global variables for colors
 const bg_color1 = [71, 222, 219];
+
 let faceList=[];
-const numberOfFaces=8;
+const numberOfFaces=6;
 let scrollSpeed=3;
 function setup () {
   

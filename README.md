@@ -1,1 +1,1 @@
-I have made it so if the mouth is not wide enough to have teeth without the mouth just looking black it doesn't draw them. This means the mouth doesn't just look black sometimes which just looks weird.  
+I have improved the eyes so if the pupil is massive there is forced to be some white space. This looks a lot better as it forces the eye to look more like an eye as supposedd to a black filled circle. There is still some occassions it occurs but it is far less frequent.
