@@ -37,7 +37,7 @@ const earShapes=["circle","triangle","square","none"];
 const minInnerEarWidth=0.1;
 const maxInnerEarWidth=0.6;
 const minInnerEarHeight=.1;
-const maxInnerEarHeight=0.9;
+const maxInnerEarHeight=.6;
 //mouth
 const minMouthHeight=.5;
 const minMouthWidth=.5;
@@ -76,22 +76,22 @@ class Face{
     if(this.sideBurn!="none"){
       this.sideBurnHeight=this.random(minSideBurnHeight,maxSideBurnHeight);
     }
-    this.noseWidth=this.random(minNoseWidth,maxNoseWidth);
+    this.earShape=earShapes[Math.floor(Math.random() * earShapes.length)];
     this.noseHeight=this.random(minNoseHeight,maxNoseHeight);
     this.noseDirection=noseDirections[Math.floor(Math.random() * noseDirections.length)];
     this.noseY=this.random(minNoseY,maxNoseY);
-   
+    this.noseWidth=this.random(minNoseWidth,this.getMaxNoseWidth());
     this.eyeWidth=this.random(minEyeWidth,maxEyeWidth);
     this.eyeX=this.random(minEyeX,this.getMaxEyeX());
     this.eyeHeight=this.random(minEyeHeight,maxEyeHeight);
     this.innerEyeWidth=this.random(minInnerEyeWidth,maxInnerEyeWidth);
     this.innerEyeHeight=this.random(minInnerEyeHeight,maxInnerEyeHeight);
     
-    this.earShape=earShapes[Math.floor(Math.random() * earShapes.length)];
+    
    
     this.earY=this.random(minEarY,maxEarY);
     this.innerEarWidth=this.earWidth*this.random(minInnerEarWidth,maxInnerEarWidth);
-    this.innerEarHeight=this.headHeight*this.random(minInnerEarHeight,maxInnerEarHeight);
+    this.innerEarHeight=this.headHeight*this.random(minInnerEarHeight,this.getMaxInnerEarHeight());
     this.mouthHeight=this.random(minMouthHeight,this.getMaxMouthHeight());
     this.mouthWidth=this.random(minMouthWidth,maxMouthWidth);
     this.hasTeeth=Math.random()<0.5;
@@ -107,7 +107,7 @@ class Face{
     return Math.random()*(max - min) + min;
   }
   getMaxEyeX(){
-    return this.headWidth/2+this.eyeWidth/2;
+    return this.headWidth/2+this.eyeWidth*.25;
   }
   getMinMouthY(){
     return this.noseY+this.noseHeight/2+this.mouthHeight/2; 
@@ -118,11 +118,20 @@ class Face{
   getMaxMouthHeight(){
     return this.headHeight/2-(this.noseY+this.noseHeight/2);
   }
+  getMaxNoseWidth(){
+    if (this.noseDirection=="right"||this.earShape=="none"){
+      return maxNoseWidth;
+    }
+    return this.headWidth/2-.3;
+  }
+  getMaxInnerEarHeight(){
+    return maxInnerEarHeight;
+    //(maxInnerEarHeight-this.sideBurnHeight)*.9;
+  }
   
   drawSkin(){
     rectMode(CENTER);
     fill(this.skinColour);
-    //noStroke();
     quad(-this.headWidth/2, -this.headHeight/2, this.headWidth/2, -this.foreHeadHeight,
     this.headWidth/2, this.headHeight/2, -this.headWidth/2, this.headHeight/2);
     
@@ -139,9 +148,7 @@ class Face{
     
   }
   drawEar(){
-    if (this.noseDirection=="left"){
-      this.earShape="none";
-    }
+   
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
     fill(this.innerEarCol);
@@ -165,7 +172,6 @@ class Face{
     rect(0,this.mouthY,this.mouthWidth,this.mouthHeight);
    //draw teeth if face has teeth and the teeth won't make the mouth completely filled with the stroke
     if(this.hasTeeth&&!this.mouthWidth/this.numberOfteeth+myStrokeWeight*1.1<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight*1.1){
-      //console.log(this.mouthWidth/this.numberOfteeth+myStrokeWeight/2<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight/2);
       line(-this.mouthWidth/2,this.mouthY,this.mouthWidth/2,this.mouthY);
       for(let i=1;i<this.numberOfteeth;i++){
         line(-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY-this.mouthHeight/2,-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY+this.mouthHeight/2);
@@ -217,7 +223,6 @@ class Face{
       }
     }
      //resize the eyes if both the width and heigh are so small they just look black
-    
      if(this.eyeWidth<eyeResizeSize&&this.eyeHeight<eyeResizeSize){
       if(this.eyeWidth<this.eyeHeight){
         this.eyeWidth=eyeResizeSize;
@@ -236,7 +241,6 @@ class Face{
     }
     
     fill(this.eyeCentreCol);
-    
     ellipse(-this.eyeX, this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
     strokeWeight(myStrokeWeight);
     //draw right eye if not a cyclops
@@ -269,6 +273,7 @@ class Face{
     else{
       triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
     }
+   
   }
 
  

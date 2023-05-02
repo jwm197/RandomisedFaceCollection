@@ -67,7 +67,7 @@ function draw () {
   let face_scale = face_size / 10;
   for(let i=0; i<faceList.length; i++) {
     push();
-    //translate((i)*width/4+xOffset,height/2);
+  
     translate(faceList[i].faceX,height/2);
     scale(face_scale);
     faceList[i].drawFace();

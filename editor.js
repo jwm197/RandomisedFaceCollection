@@ -119,10 +119,11 @@ function draw () {
    // draw face using values mapped from 3 sliders
    face.sideBurn=sideBurns[Math.floor(map(s1, 0, 100, 0,sideBurns.length))];
    face.sideBurnHeight=map(s2, 0, 100, minSideBurnHeight, maxSideBurnHeight);
-   face.noseWidth=map(s3, 0, 100, minNoseWidth, maxNoseWidth);
+   
    face.noseHeight=map(s4, 0, 100, minNoseHeight, maxNoseHeight);
    face.noseDirection=noseDirections[Math.floor(map(s5, 0, 100, 0,noseDirections.length))];
    face.noseY=map(s6, 0, 100, minNoseY, maxNoseY);
+   face.noseWidth=map(s3, 0, 100, minNoseWidth, face.getMaxNoseWidth());
    
    face.eyeWidth=map(s8, 0, 100, minEyeWidth, maxEyeWidth);
    face.eyeHeight=map(s9, 0, 100, minEyeHeight, maxEyeHeight);
@@ -132,7 +133,7 @@ function draw () {
    face.earShape=earShapes[Math.floor(map(s12, 0, 100, 0,earShapes.length))];
    face.earY=map(s13, 0, 100, minEarY, maxEarY);
    face.innerEarWidth=face.earWidth*map(s14, 0, 100, minInnerEarWidth, maxInnerEarWidth);
-   face.innerEarHeight=face.headHeight*map(s15, 0, 100, minInnerEarHeight, maxInnerEarHeight);
+   face.innerEarHeight=face.headHeight*map(s15, 0, 100, minInnerEarHeight, face.getMaxInnerEarHeight());
    face.hasTeeth=0.5<map(s16, 0, 100, 0,1);
    face.mouthWidth=map(s17, 0, 100, minMouthWidth,maxMouthWidth);
    face.mouthHeight=map(s18,0,100,minMouthHeight,face.getMaxMouthHeight());
