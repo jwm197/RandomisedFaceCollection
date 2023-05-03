@@ -59,7 +59,7 @@ const grey=[211,211,209];
 const white=[255,255,255];
 const myBgCol=[35,168,178];//light blue
 const green=[86,115,90];
-
+const darkGrey=[110,110,110];
 class Face{
  
   headHeight=8;
@@ -84,34 +84,35 @@ class Face{
   
   constructor(){
     this.faceX=0;
-    this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
+    this.sideBurn=sideBurns[Math.floor(p5.prototype.random() * sideBurns.length)];
     if(this.sideBurn!="none"){
-      this.sideBurnHeight=random(minSideBurnHeight,maxSideBurnHeight);
+      this.sideBurnHeight=p5.prototype.random(minSideBurnHeight,maxSideBurnHeight);
     }
     this.earShape=earShapes[Math.floor(Math.random() * earShapes.length)];
-    this.noseHeight=random(minNoseHeight,maxNoseHeight);
+    this.noseHeight=p5.prototype.random(minNoseHeight,maxNoseHeight);
     this.noseDirection=noseDirections[Math.floor(Math.random() * noseDirections.length)];
-    this.noseY=random(minNoseY,maxNoseY);
-    this.noseWidth=random(minNoseWidth,this.getMaxNoseWidth());
-    this.eyeWidth=random(minEyeWidth,maxEyeWidth);
-    this.eyeX=random(minEyeX,this.getMaxEyeX());
-    this.eyeHeight=random(minEyeHeight,maxEyeHeight);
-    this.innerEyeWidth=random(minInnerEyeWidth,maxInnerEyeWidth);
-    this.innerEyeHeight=random(minInnerEyeHeight,maxInnerEyeHeight);
+    this.noseY=p5.prototype.random(minNoseY,maxNoseY);
+    this.noseWidth=p5.prototype.random(minNoseWidth,this.getMaxNoseWidth());
+    this.eyeWidth=p5.prototype.random(minEyeWidth,maxEyeWidth);
+    this.eyeX=p5.prototype.random(minEyeX,this.getMaxEyeX());
+    this.eyeHeight=p5.prototype.random(minEyeHeight,maxEyeHeight);
+    this.innerEyeWidth=p5.prototype.random(minInnerEyeWidth,maxInnerEyeWidth);
+    this.innerEyeHeight=p5.prototype.random(minInnerEyeHeight,maxInnerEyeHeight);
     
     
    
-    this.earY=random(minEarY,maxEarY);
-    this.innerEarWidth=this.earWidth*random(minInnerEarWidth,maxInnerEarWidth);
-    this.innerEarHeight=this.headHeight*random(minInnerEarHeight,this.getMaxInnerEarHeight());
-    this.mouthHeight=random(minMouthHeight,this.getMaxMouthHeight());
-    this.mouthWidth=random(minMouthWidth,maxMouthWidth);
+    this.earY=p5.prototype.random(minEarY,maxEarY);
+    this.innerEarWidth=this.earWidth*p5.prototype.random(minInnerEarWidth,maxInnerEarWidth);
+    this.innerEarHeight=this.headHeight*p5.prototype.random(minInnerEarHeight,this.getMaxInnerEarHeight());
+    this.mouthHeight=p5.prototype.random(minMouthHeight,this.getMaxMouthHeight());
+    this.mouthWidth=p5.prototype.random(minMouthWidth,maxMouthWidth);
     this.hasTeeth=Math.random()<0.5;
-    this.mouthY=random(this.getMinMouthY(),this.getMaxMouthY());
-    this.numberOfteeth=Math.floor(random(minNumberOfteeth,maxNumberOfTeeth));
+    this.mouthY=p5.prototype.random(this.getMinMouthY(),this.getMaxMouthY());
+    this.numberOfteeth=Math.floor(p5.prototype.random(minNumberOfteeth,maxNumberOfTeeth));
    
   
   }
+  
   getMaxEyeX(){
     return this.headWidth/2+this.eyeWidth*.25;
   }

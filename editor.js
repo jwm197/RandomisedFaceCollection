@@ -1,7 +1,6 @@
 /*
  * This editor shows the possible faces that can be created
  */
-
 const canvasWidth = 960;
 const canvasHeight = 500;
 let face;

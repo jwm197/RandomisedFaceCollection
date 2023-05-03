@@ -1,1 +1,1 @@
-I have added some lines to the road. I think it works as it gives some minimal detail to the raod but the yellow is too brighter colour for this and pulls attention away from the houses. I also think the road itself should be darker. 
+I have changed the road colours which look way better although I am wondering thats too much light grey now. I have also updated the random function used which improves the performance. 

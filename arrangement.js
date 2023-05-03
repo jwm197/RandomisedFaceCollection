@@ -101,12 +101,12 @@ function draw () {
     
   }
   //draw road
-  fill(grey);
+  fill(darkGrey);
   strokeWeight(myStrokeWeight*face_scale);
   rect(0,topOfRoad,width+10,height);
   //draw lines on road
   rectMode(CENTER);
-  fill(yellow);
+  fill(grey);
   faceList.forEach((face) => {
     rect(face.faceX-80,height-(height-topOfRoad)/2,70,20);
   });
