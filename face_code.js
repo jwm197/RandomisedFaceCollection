@@ -162,6 +162,10 @@ class Face{
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
     fill(this.innerEarCol);
+    if(this.earY+this.innerEarHeight/2>this.headHeight/4){
+      this.earShape="none";
+      return;
+    }
     if(this.earShape=="circle"){
       ellipseMode(CENTER);
       ellipse(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);

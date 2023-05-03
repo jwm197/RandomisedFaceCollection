@@ -1,1 +1,1 @@
-I have changed the road colours which look way better although I am wondering thats too much light grey now. I have also updated the random function used which improves the performance. 
+made the ear unable to stick out the bottom. 
