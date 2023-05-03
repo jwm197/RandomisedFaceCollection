@@ -1,1 +1,1 @@
-I have added some background colours to make it more streetlike. for some reason this makes the faces have a neck which is a bug. 
+I have fixed the bug meaning that the faces had necks whic was me just not setting rectmode in the ear function. I havealso added these paths to the houses. 

@@ -61,8 +61,7 @@ const myBgCol=[35,168,178];//light blue
 const green=[86,115,90];
 
 class Face{
-  //colourList=[red,yellow,blue,grey];
-  
+ 
   headHeight=8;
   headWidth=8; 
   
@@ -84,11 +83,6 @@ class Face{
   noseCol=grey;
   
   constructor(){
-    // this.colourList.sort(() => Math.random() - 0.5);//shuffles the array
-    // this.noseCol=this.colourList[0];
-    // this.mouthColour=this.colourList[1];
-    // this.skinColour=this.colourList[2];
-    // this.hairColour=this.colourList[3];
     this.faceX=0;
     this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
     if(this.sideBurn!="none"){
@@ -163,7 +157,7 @@ class Face{
     
   }
   drawEar(){
-   
+    rectMode(CORNER);
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
     fill(this.innerEarCol);
@@ -172,7 +166,7 @@ class Face{
       ellipse(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
     }
     else if(this.earShape=="square"){
-      rectMode(CENTER);
+      
       rect(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
     }
     else if(this.earShape=="triangle"){

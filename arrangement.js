@@ -14,7 +14,9 @@ const millisPerSwap = 3000;
 
 let faceList=[];
 const numberOfFaces=6;
-let scrollSpeed=3;
+const scrollSpeed=3;
+const topOfGrass=canvasHeight/2;
+const topOfRoad=canvasHeight*.75;
 function setup () {
   
   // create the drawing canvas, save the canvas element
@@ -41,15 +43,13 @@ function changeRandomSeed() {
   
   
 }
-function drawBackground(){
-  background(myBgCol);
-  let topOfGrass=height/2;
-  let topOfRoad=height*.75;
-  rectMode(CORNERS);
-  fill(green);
-  rect(0,topOfGrass,canvasWidth,topOfRoad);
-  fill(grey);
-  rect(0,topOfRoad,canvasWidth,height);
+
+
+function drawPath(bottomOfFaceY){
+  strokeWeight(myStrokeWeight);
+  let pathWidth=2;
+  let pathChangeInX=80;
+  quad(-pathWidth/2,bottomOfFaceY,+pathWidth/2,bottomOfFaceY,+pathWidth/2-pathChangeInX,topOfRoad,-pathWidth/2-pathChangeInX,topOfRoad);
 }
 
 
@@ -67,28 +67,50 @@ function draw () {
 
   // reset the random number generator each time draw is called
   randomSeed(curRandomSeed);
+  let face_size = canvasWidth / 5;
+  let face_scale = face_size / 10;
 
   // clear screen
   
-  drawBackground();
+  //sky:
+  background(myBgCol);
+ 
+  
+  //grass:
+  rectMode(CORNERS);
+  strokeWeight(1);
+  fill(green);
+  strokeWeight(myStrokeWeight*face_scale);
+  rect(0,topOfGrass,width+10,topOfRoad);
 
-  let face_size = canvasWidth / 5;
-  let face_scale = face_size / 10;
+
+  
   for(let i=0; i<faceList.length; i++) {
     push();
   
     translate(faceList[i].faceX,height/2);
     scale(face_scale);
+    drawPath(faceList[i].headHeight/2);
+    
     faceList[i].drawFace();
+    
     faceList[i].faceX-=scrollSpeed;
     pop();
+    fill(grey);
+    strokeWeight(myStrokeWeight*face_scale);
+    rect(0,topOfRoad,width+10,height+5);
+    
   }
+  rectMode(CORNERS);
+    
+    
   if(faceList[0].faceX<=-canvasWidth/4){
     faceList.splice(0,1);
     let face=new Face();
     face.faceX=faceList.length*width/4;
     faceList.push(face);
   }
+  
   
   
 }
