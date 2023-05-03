@@ -5,7 +5,7 @@
 const canvasWidth = 960;
 const canvasHeight = 500;
 let face;
-const bg_color = [71, 222, 219];
+const bg_color = myBgCol;
 let slider1, slider2, slider3, slider4, slider5;
 let slider6, slider7, slider8, slider9, slider10,slider11,slider12,slider13,slider14,slider15;
 let slider16,slider17,slider18,slider19,slider20;

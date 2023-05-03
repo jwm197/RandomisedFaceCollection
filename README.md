@@ -1,1 +1,1 @@
-I have moved the face variable initialisation to setup in editor so p5 functions don't have to be explictly called using p5.prototype 
+I have added colours in the style of the De Stijl art movement.  

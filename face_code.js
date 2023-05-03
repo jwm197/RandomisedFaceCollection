@@ -50,26 +50,35 @@ const minMouthNoseGap=.25;
 
 const myStrokeWeight=0.2;
 
+//colours
+const red=[188,66,46];
+const yellow=[225,191,91];
+const blue=[31,62,109];
+const black=[15,17,7];
+const grey=[211,211,209];
+const white=[255,255,255]
+const myBgCol=white;
 class Face{
-  
+  colourList=[red,yellow,blue,grey];
   headHeight=8;
   headWidth=8; 
   
   foreHeadHeight=5;
   hairHeight=10;
   earWidth=3;
-  skinColour=170;
-  hairColour=0;
+  skinColour=yellow;
+  hairColour=blue;
   
   sideBurnHeight=0;
   noseX=0;
   eyeBallCol=255;
-  eyeCentreCol=0;
+  eyeCentreCol=black;
   eyeY=-3;
-  mouthColour=255;
+  mouthColour=grey;
   innerEarCol=this.skinColour;
   eyeStroke=true; 
   earShape="none";
+  noseCol=red;
   
   constructor(){
     this.faceX=0;
@@ -256,6 +265,7 @@ class Face{
     }
   }
   drawNose(){
+    fill(this.noseCol);
     //make gap between mouth and nose if nose and mouth are too close
     let noseHeightReduction=0;
     if(this.noseY+this.noseHeight/2+minMouthNoseGap>=this.mouthY-this.mouthHeight/2){
