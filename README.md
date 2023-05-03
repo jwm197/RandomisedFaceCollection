@@ -1,1 +1,1 @@
-I have added colours in the style of the De Stijl art movement.  
+added a colour shuffling array where it picks the the colour of the skin,nose,mouth and hair out of a list where these are all different. 
