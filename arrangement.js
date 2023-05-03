@@ -46,6 +46,7 @@ function changeRandomSeed() {
 
 
 function drawPath(bottomOfFaceY){
+  fill(grey);
   strokeWeight(myStrokeWeight);
   let pathWidth=2;
   let pathChangeInX=80;
@@ -96,14 +97,20 @@ function draw () {
     
     faceList[i].faceX-=scrollSpeed;
     pop();
-    fill(grey);
-    strokeWeight(myStrokeWeight*face_scale);
-    rect(0,topOfRoad,width+10,height+5);
+    
     
   }
+  //draw road
+  fill(grey);
+  strokeWeight(myStrokeWeight*face_scale);
+  rect(0,topOfRoad,width+10,height);
+  //draw lines on road
+  rectMode(CENTER);
+  fill(yellow);
+  faceList.forEach((face) => {
+    rect(face.faceX-80,height-(height-topOfRoad)/2,70,20);
+  });
   rectMode(CORNERS);
-    
-    
   if(faceList[0].faceX<=-canvasWidth/4){
     faceList.splice(0,1);
     let face=new Face();
