@@ -59,7 +59,7 @@ const grey=[211,211,209];
 const white=[255,255,255];
 const myBgCol=white;
 class Face{
-  colourList=[red,yellow,blue,grey];
+  //colourList=[red,yellow,blue,grey];
   
   headHeight=8;
   headWidth=8; 
@@ -75,18 +75,18 @@ class Face{
   eyeBallCol=white;
   eyeCentreCol=black;
   eyeY=-3;
-  mouthColour=grey;
+  mouthColour=red;
   innerEarCol=this.skinColour;
   eyeStroke=true; 
   earShape="none";
-  noseCol=red;
+  noseCol=grey;
   
   constructor(){
-    this.colourList.sort(() => Math.random() - 0.5);//shuffles the array
-    this.noseCol=this.colourList[0];
-    this.mouthColour=this.colourList[1];
-    this.skinColour=this.colourList[2];
-    this.hairColour=this.colourList[3];
+    // this.colourList.sort(() => Math.random() - 0.5);//shuffles the array
+    // this.noseCol=this.colourList[0];
+    // this.mouthColour=this.colourList[1];
+    // this.skinColour=this.colourList[2];
+    // this.hairColour=this.colourList[3];
     this.faceX=0;
     this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
     if(this.sideBurn!="none"){

@@ -1,1 +1,1 @@
-added a colour shuffling array where it picks the the colour of the skin,nose,mouth and hair out of a list where these are all different. 
+Reverted to the previous colour scheme and removed the shuffling. I have swapped the nose and mouth colour though. I also seemingly have broken the p5 random function as often 2 faces are identical next to each other for the continous variables. This only applies to the continous variables as the categorical variables use Math.random.
