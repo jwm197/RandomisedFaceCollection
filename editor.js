@@ -13,7 +13,7 @@ let faceSelector;
 let faceGuideCheckbox;
 
 function setup () {
-  face=new face();
+  face=new Face();
   // create the drawing canvas, save the canvas element
   let main_canvas = createCanvas(canvasWidth, canvasHeight);
   main_canvas.parent('canvasContainer');
@@ -108,7 +108,7 @@ function draw () {
   // use same size / y_pos for all faces
   let face_size = canvasWidth / 5;
   let face_scale = face_size / 10;
-  let face_y = height / 2;
+  let face_y = height / 2+1;
   let face_x = width / 2;
 
   push();

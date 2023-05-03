@@ -1,1 +1,1 @@
-Reverted to the previous colour scheme and removed the shuffling. I have swapped the nose and mouth colour though. I also seemingly have broken the p5 random function as often 2 faces are identical next to each other for the continous variables. This only applies to the continous variables as the categorical variables use Math.random.
+I have added some background colours to make it more streetlike. for some reason this makes the faces have a neck which is a bug. 

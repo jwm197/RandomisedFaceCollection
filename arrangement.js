@@ -10,7 +10,7 @@ let lastSwapTime = 0;
 const millisPerSwap = 3000;
 
 // global variables for colors
-const bg_color1 = myBgCol;
+
 
 let faceList=[];
 const numberOfFaces=6;
@@ -41,7 +41,16 @@ function changeRandomSeed() {
   
   
 }
-
+function drawBackground(){
+  background(myBgCol);
+  let topOfGrass=height/2;
+  let topOfRoad=height*.75;
+  rectMode(CORNERS);
+  fill(green);
+  rect(0,topOfGrass,canvasWidth,topOfRoad);
+  fill(grey);
+  rect(0,topOfRoad,canvasWidth,height);
+}
 
 
 function mouseClicked() {
@@ -51,6 +60,7 @@ function mouseClicked() {
 }
 
 function draw () {
+  
   if(millis() > lastSwapTime + millisPerSwap) {
     changeRandomSeed();
   }
@@ -59,8 +69,8 @@ function draw () {
   randomSeed(curRandomSeed);
 
   // clear screen
-  background(bg_color1);
-
+  
+  drawBackground();
 
   let face_size = canvasWidth / 5;
   let face_scale = face_size / 10;

@@ -57,7 +57,9 @@ const blue=[31,62,109];
 const black=[15,17,7];
 const grey=[211,211,209];
 const white=[255,255,255];
-const myBgCol=white;
+const myBgCol=[35,168,178];//light blue
+const green=[86,115,90];
+
 class Face{
   //colourList=[red,yellow,blue,grey];
   
@@ -136,8 +138,6 @@ class Face{
   }
   getMaxInnerEarHeight(){
     let size=map(this.headHeight/2+this.sideBurnHeight,this.headHeight/2+minSideBurnHeight,this.headHeight/2+maxSideBurnHeight,minInnerEarHeight,maxInnerEarHeight);
-    console.log(size<maxInnerEarHeight);
-    console.log(size);
     if(size<maxInnerEarHeight){
       return size;
     }
