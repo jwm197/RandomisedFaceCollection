@@ -6,6 +6,7 @@
  *
  * These functions are used by your final arrangement of faces as well as the face editor.
  */
+
 //sideburns
 const sideBurns = ["none", "square", "triangle"];
 const minSideBurnHeight=.1;
@@ -74,37 +75,31 @@ class Face{
     this.faceX=0;
     this.sideBurn=sideBurns[Math.floor(Math.random() * sideBurns.length)];
     if(this.sideBurn!="none"){
-      this.sideBurnHeight=this.random(minSideBurnHeight,maxSideBurnHeight);
+      this.sideBurnHeight=random(minSideBurnHeight,maxSideBurnHeight);
     }
     this.earShape=earShapes[Math.floor(Math.random() * earShapes.length)];
-    this.noseHeight=this.random(minNoseHeight,maxNoseHeight);
+    this.noseHeight=random(minNoseHeight,maxNoseHeight);
     this.noseDirection=noseDirections[Math.floor(Math.random() * noseDirections.length)];
-    this.noseY=this.random(minNoseY,maxNoseY);
-    this.noseWidth=this.random(minNoseWidth,this.getMaxNoseWidth());
-    this.eyeWidth=this.random(minEyeWidth,maxEyeWidth);
-    this.eyeX=this.random(minEyeX,this.getMaxEyeX());
-    this.eyeHeight=this.random(minEyeHeight,maxEyeHeight);
-    this.innerEyeWidth=this.random(minInnerEyeWidth,maxInnerEyeWidth);
-    this.innerEyeHeight=this.random(minInnerEyeHeight,maxInnerEyeHeight);
+    this.noseY=random(minNoseY,maxNoseY);
+    this.noseWidth=random(minNoseWidth,this.getMaxNoseWidth());
+    this.eyeWidth=random(minEyeWidth,maxEyeWidth);
+    this.eyeX=random(minEyeX,this.getMaxEyeX());
+    this.eyeHeight=random(minEyeHeight,maxEyeHeight);
+    this.innerEyeWidth=random(minInnerEyeWidth,maxInnerEyeWidth);
+    this.innerEyeHeight=random(minInnerEyeHeight,maxInnerEyeHeight);
     
     
    
-    this.earY=this.random(minEarY,maxEarY);
-    this.innerEarWidth=this.earWidth*this.random(minInnerEarWidth,maxInnerEarWidth);
-    this.innerEarHeight=this.headHeight*this.random(minInnerEarHeight,this.getMaxInnerEarHeight());
-    this.mouthHeight=this.random(minMouthHeight,this.getMaxMouthHeight());
-    this.mouthWidth=this.random(minMouthWidth,maxMouthWidth);
+    this.earY=random(minEarY,maxEarY);
+    this.innerEarWidth=this.earWidth*random(minInnerEarWidth,maxInnerEarWidth);
+    this.innerEarHeight=this.headHeight*random(minInnerEarHeight,this.getMaxInnerEarHeight());
+    this.mouthHeight=random(minMouthHeight,this.getMaxMouthHeight());
+    this.mouthWidth=random(minMouthWidth,maxMouthWidth);
     this.hasTeeth=Math.random()<0.5;
-    this.mouthY=this.random(this.getMinMouthY(),this.getMaxMouthY());
-    this.numberOfteeth=Math.floor(this.random(minNumberOfteeth,maxNumberOfTeeth));
+    this.mouthY=random(this.getMinMouthY(),this.getMaxMouthY());
+    this.numberOfteeth=Math.floor(random(minNumberOfteeth,maxNumberOfTeeth));
    
   
-  }
-  
-  /**Random function that generates a random number in a range 
-   * This is needed as the p5js one crashes the program if called directly in the constructor on the editor page**/
-  random(min,max){
-    return Math.random()*(max - min) + min;
   }
   getMaxEyeX(){
     return this.headWidth/2+this.eyeWidth*.25;
@@ -125,8 +120,13 @@ class Face{
     return this.headWidth/2-.3;
   }
   getMaxInnerEarHeight(){
+    let size=map(this.headHeight/2+this.sideBurnHeight,this.headHeight/2+minSideBurnHeight,this.headHeight/2+maxSideBurnHeight,minInnerEarHeight,maxInnerEarHeight);
+    console.log(size<maxInnerEarHeight);
+    console.log(size);
+    if(size<maxInnerEarHeight){
+      return size;
+    }
     return maxInnerEarHeight;
-    //(maxInnerEarHeight-this.sideBurnHeight)*.9;
   }
   
   drawSkin(){

@@ -33,7 +33,6 @@ function generateFaceList(){
     let face=new Face();
     face.faceX=i*width/4;
     faceList.push(face);
-    
   }
 }
 function changeRandomSeed() {

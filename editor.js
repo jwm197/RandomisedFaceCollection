@@ -4,7 +4,7 @@
 
 const canvasWidth = 960;
 const canvasHeight = 500;
-const face=new Face();
+let face;
 const bg_color = [71, 222, 219];
 let slider1, slider2, slider3, slider4, slider5;
 let slider6, slider7, slider8, slider9, slider10,slider11,slider12,slider13,slider14,slider15;
@@ -13,7 +13,7 @@ let faceSelector;
 let faceGuideCheckbox;
 
 function setup () {
-
+  face=new face();
   // create the drawing canvas, save the canvas element
   let main_canvas = createCanvas(canvasWidth, canvasHeight);
   main_canvas.parent('canvasContainer');
@@ -70,6 +70,7 @@ function setup () {
   faceSelector.option('3');
   faceSelector.value('1');
   faceSelector.parent('selector1Container');
+  
 }
 
 
