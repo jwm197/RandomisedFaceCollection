@@ -98,15 +98,12 @@ class Face{
     this.eyeHeight=p5.prototype.random(minEyeHeight,maxEyeHeight);
     this.innerEyeWidth=p5.prototype.random(minInnerEyeWidth,maxInnerEyeWidth);
     this.innerEyeHeight=p5.prototype.random(minInnerEyeHeight,maxInnerEyeHeight);
-    
-    
-   
     this.earY=p5.prototype.random(minEarY,maxEarY);
     this.innerEarWidth=this.earWidth*p5.prototype.random(minInnerEarWidth,maxInnerEarWidth);
     this.innerEarHeight=this.headHeight*p5.prototype.random(minInnerEarHeight,this.getMaxInnerEarHeight());
     this.mouthHeight=p5.prototype.random(minMouthHeight,this.getMaxMouthHeight());
     this.mouthWidth=p5.prototype.random(minMouthWidth,maxMouthWidth);
-    this.hasTeeth=Math.random()<0.5;
+    this.hasTeeth=Math.random()<0.6;
     this.mouthY=p5.prototype.random(this.getMinMouthY(),this.getMaxMouthY());
     this.numberOfteeth=Math.floor(p5.prototype.random(minNumberOfteeth,maxNumberOfTeeth));
    
@@ -158,6 +155,7 @@ class Face{
     
   }
   drawEar(){
+    stroke(0);
     rectMode(CORNER);
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
@@ -290,8 +288,5 @@ class Face{
     }
    
   }
-
- 
-
 
 }
