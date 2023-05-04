@@ -17,7 +17,7 @@ The randomised variables are:
 | innerEyeWidth  |Continous variable defining the width of each pupil                                                           |minInnerEyeWidth to maxInnerEyeWidth                               |
 | innerEyeHeight |Continous variable defining the height of each pupil                                                           |minInnerEyeHeight to maxInnerEyeHeight                              |
 | earY           |Continous variable defining the y position of the centre of the inner ear                                                           |minEarY to maxEarY                              |
-| innerEarWidth  |Continous variable defining the width of the inner ear                                                           |(minInnerEarWidth to maxInnerEarWidth) multiplied by earWidth                             |
+| innerEarWidth  |Continous variable defining the width of the inner ear                                                           |(minInnerEarWidth to maxInnerEarWidth) multiplied by the face's earWidth                             |
 | innerEarHeight |Continous variable defining the height of the inner ear                                                           |(minInnerEarHeight to getMaxInnerEarHeight()) multiplied by face's headHeight                             |
 | mouthHeight    |Continous variable defining the height of the mouth                                                           |minMouthHeight to getMaxMouthHeight()                              |
 | mouthWidth     |Continous variable defining the width of the mouth                                                          |minMouthWidth to maxMouthWidth                              |
@@ -25,4 +25,4 @@ The randomised variables are:
 | mouthY         |Continous variable defining the y position of the centre of the mouth                                                    |getMinMouthY() to getMaxMouthY()                              |
 | numberOfteeth  |Continous integer variable defining the number of teeth in the mouth                                                           |minNumberOfteeth to maxNumberOfTeeth                             |
 
-Note these variables maybe adjusted after generating the random values but these are the bounds at the time of generation. Also note all variables listed in the bounds are global constants and all functions listed are in the Face class. 
+Note these variables maybe adjusted after generating the random values but these are the bounds at the time of generation. Also note all variables listed in the bounds are global constants unless stated to be a face's and all functions listed are in the Face class. 
