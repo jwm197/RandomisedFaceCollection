@@ -107,7 +107,7 @@ function draw () {
   // use same size / y_pos for all faces
   let face_size = canvasWidth / 5;
   let face_scale = face_size / 10;
-  let face_y = height / 2+1;
+  let face_y = height / 2;
   let face_x = width / 2;
 
   push();
@@ -139,6 +139,7 @@ function draw () {
    face.mouthHeight=map(s18,0,100,minMouthHeight,face.getMaxMouthHeight());
    face.mouthY=map(s19, 0, 100, face.getMinMouthY(), face.getMaxMouthY());
    face.numberOfteeth=Math.floor(map(s20, 0, 100, minNumberOfteeth,maxNumberOfTeeth));
+   translate(0, 3);
    face.drawFace();
   
 
